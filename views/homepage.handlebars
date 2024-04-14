@@ -1,0 +1,29 @@
+{{#if logged_in}}
+<div class="">
+    <button id="addMachineBtn">Add a machine</button>
+    <br>
+    {{!-- <button>Delete machine</button> --}}
+    {{!-- <button id="addHighscoreBtn">New Highscore</button> --}}
+</div>
+<div class="row" id="addMachine" style="display: none;">
+    <div class="one-half column">
+        <h5>Add a Machine</h5>
+        <form id="addMachineForm">
+            <label for="machineName">Machine Name</label>
+            <input type="text" id="machineName" name="machineName" required/>
+            <br>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+</div>
+{{else}}
+<div class="">
+    <a href='/login' class="button login-button" id="loginBtn">Login to add a machine</a>
+</div>
+{{/if}}
+
+{{#each machines as |machine|}}
+{{> machine-data}}
+{{/each}}
+
+<script src="/js/addMachine.js"></script>
