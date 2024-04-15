@@ -1,23 +1,22 @@
 const router = require("express").Router();
+const { User, Blog } = require("../../models");
 const bcrypt = require("bcrypt");
-const sequelize = require("../../config/connection");
+
 
 router.post("/login", async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { email: req.body.email } });
+        const userData = await User.findOne({ where: { 
+            email: req.body.email
+            [ include ]}});
 
         if (!userData) {
             res.status(400)
                .json({ message: "Incorrect email or password" });
             return;
         }
-        const passwordData = await Password.findOne({ where: { uid: userData.id } });
-        if (!passwordData) {
-            res.status(400)
-               .json({ message: "Something went wrong"})
-        }
 
-        const validPassword = await bcrypt.compare(req.body.password, passwordData.password);
+        const validPassword = await bcrypt.compare(req.body.password, userData.password);
+
         if (!validPassword) {
             res.status(400)
                .json({ message: "Incorrect email or password" });
@@ -39,5 +38,16 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204)
+               .end();
+        });
+    } else {
+        res.status(404)
+           .end();
+    }
+});
 
 module.exports = router;

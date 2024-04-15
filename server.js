@@ -2,10 +2,10 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
-const helpers = require("./utils/helpers");
-const routes = require("./controllers");
+const helpers = require("./utils/helpers.js");
+const routes = require("./controllers/index.js");
 
-const sequelize = require("./config/connection");
+const sequelize = require("./config/connection.js");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
@@ -15,7 +15,9 @@ const hbs = exphbs.create({ helpers });
 
 const sess = {
   secret: "Super duper secret secret",
-  cookie: {},
+  cookie: {
+    maxAge: 10 * 60 * 1000
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
