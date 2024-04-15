@@ -1,6 +1,6 @@
 {{#if loggedIn}}
 <div class="">
-    <button id="addPostBtn">Add a machine</button>
+    <button id="addPostBtn">Add a Post</button>
     <br>
 </div>
 <div class="row" id="addPost" style="display: none;">
@@ -18,7 +18,7 @@
 </div>
 {{else}}
 <div class="">
-    <a href='/login' class="button login-button" id="loginBtn">Login to add a post</a>
+    <a href='/login' class="button login-button" id="loginBtn">To add a post, login</a>
 </div>
 {{/if}}
 
@@ -26,4 +26,4 @@
 {{> blog-data}}
 {{/each}}
 
-<script src="./Assets/js/script.js"></script>
+<script src="./Assets/js/addBlog.js"></script>

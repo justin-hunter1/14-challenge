@@ -19,14 +19,28 @@
             <div class="two columns">
                 <a href="/login" class="button hbutton login-button" id="loginBtn">Login</a>
             </div>
-            {{/if}}        
+            {{/if}}
+            <div class="eight columns header-text">
+                <h1>MVC Techblog</h1>
+                <h5>where you get all your tech information</h5>
+            </div>
+            {{#if loggedIn}}
+            <div class="two columns">
+                <button class="login-button hbutton" id="logout">Logout</button>
+            </div>
+            {{else}}
+            <div class="two columns">
+
+            </div>
+            {{/if}}
         </header>
 <!-- this is where handlebars will change stuff -->
         <main class="row main">
             {{{body}}}
         </main>
         {{#if loggedIn}}
-        <script src="./Assets/js/script.js"></script>
+        <script src="./Assets/js/logout.js"></script>
         {{/if}}
+        
     </body>
 </html>

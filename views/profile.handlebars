@@ -1,0 +1,43 @@
+<div class="row" id="addHighscore" style="display: none;">
+    <div class="one-half column">
+        <h5>Add a Highscore</h5>
+        <div class="row">
+            <div class="six columns">
+                <label for="chooseMachine">Choose a Machine</label>
+                <select class="u-full-width" id="exampleRecipientInput">
+                    <option value="Option 1">Machine 1</option>
+                    <option value="Option 2">Machine 2</option>
+                    <option value="Option 3">Machine 3</option>
+                </select>
+            </div>
+            <div class="six columns">
+                <label for="highscore">Your Highscore</label>
+                <input class="u-full-width" type="text" placeholder="123456" id="highscore">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div>
+        <h4>{{fname}} {{lname}}'s highscores:</h4>
+            {{#each user_highscore}}
+            <div class="row post-item">
+                <div class="one-half column">
+                    <h5>Machine Name: {{mname}}, Highscore: {{highscore.score}}</h5>
+                    <button id="editHighscore">Edit High Score</button>
+                </div>
+                <div class="one-half column" id="editHighscoreField" style="display: none;">
+                    <form id="editHighscoreForm">
+                    <input type="hidden", id="highscore-id", name="highscore-id", value="{{highscore.id}}"/>
+                    <input class="u-full-width" type="text" placeholder="New Highscore" id="newHighscore"/>
+                    <input type="submit" value="Submit"/>
+                    </form>
+                </div>
+            </div>
+            {{/each}}
+        
+    </div>
+</div>
+
+
+<script src="/js/editBlog.js"></script>

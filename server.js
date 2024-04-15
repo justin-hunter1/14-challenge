@@ -16,7 +16,7 @@ const hbs = exphbs.create({ helpers });
 const sess = {
   secret: "Super duper secret secret",
   cookie: {
-    maxAge: 10 * 60 * 1000
+    expires: 10 * 60 * 1000
   },
   resave: false,
   saveUninitialized: true,
