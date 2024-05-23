@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const { User, Blog } = require("../../models");
 const bcrypt = require("bcrypt");
+const withAuth = require("../../utils/auth");
 
 
-router.post("/login", async (req, res) => {
+router.post("/signin", async (req, res) => {
     try {
         const userData = await User.findOne({ where: { email: req.body.email } });
 
@@ -27,6 +28,33 @@ router.post("/login", async (req, res) => {
 
             res.status(200)
                .json({ user: userData, message: "Welcome!" });
+
+        });
+    } 
+    catch (err) {
+        console.log(err);
+        res.status(400)
+           .json(err);
+    }
+});
+
+router.post("/signup", async (req, res) => {
+console.log(req.body);
+    try {
+        User.create({
+            fname: req.body.fname,
+            lname: req.body.lname,
+            email: req.body.email,
+            password: req.body.password
+        })
+        .then(dbUserData => {
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.email = dbUserData.email;
+                req.session.loggedIn = true;
+          
+                res.json(dbUserData);
+            });
         });
     } 
     catch (err) {
@@ -39,13 +67,15 @@ router.post("/login", async (req, res) => {
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
-            res.status(204)
+            res.status(200)
                .end();
         });
-    } else {
+    }
+    else {
         res.status(404)
            .end();
     }
 });
 
 module.exports = router;
+    

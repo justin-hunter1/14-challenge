@@ -15,11 +15,11 @@ Blog.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        comment: {
+        content: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        create_at: {
+        created_at: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW

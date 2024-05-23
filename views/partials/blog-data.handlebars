@@ -1,6 +1,19 @@
-<div class="post-item">
-    <div class="post-text-box">
-        <h5>{{title}}</h5>
-        <p>{{comment}}</p>
-    </div>
-</div>
+<div class="card mb-6">
+    <header class="card-header">
+        <div class="column">
+            <p class=""></p>
+            <a href="/{{id}}"  class="">{{title}} </a></p>
+        </div>
+        <div class="column">
+            <span class=""> </span>
+        </div>
+    </header>
+        <div class="">
+
+            {{post_content}}
+
+        </div>
+        <div class="">
+            <b>{{user.email}}</b> | {{create_at}} | <a href="/{{id}}">comment</a>
+        </div>
+

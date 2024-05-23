@@ -1,29 +1,6 @@
 {{#if loggedIn}}
-<div class="">
-    <button id="addPostBtn">Add a Post</button>
-    <br>
-</div>
-<div class="row" id="addPost" style="display: none;">
-    <div class="one-half column">
-        <h5>Add a Post</h5>
-        <form id="addPostForm">
-            <label id="">Title</label>
-            <input type="text" id="title" name="title" required/>
-            <label id="">Content</label>
-            <textarea id="comment" name="comment"></textarea>
-            <br>
-            <input type="submit" value="Submit"/>
-        </form>
-    </div>
-</div>
-{{else}}
-<div class="">
-    <a href='/login' class="button login-button" id="loginBtn">To add a post, login</a>
-</div>
-{{/if}}
-
 {{#each data as |data|}}
-{{> blog-data}}
+{{> blog-data data}}
+</div>
 {{/each}}
-
-<script src="./Assets/js/addBlog.js"></script>
+{{/if}}

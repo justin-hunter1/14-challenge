@@ -38,9 +38,6 @@ User.init(
             validate: {
                 len: [4]
             }
-        },
-        username: {
-            type: DataTypes.STRING
         }
     },
     {
@@ -49,20 +46,17 @@ User.init(
                 for (let i = 0; i < newUserData.length; i++) {
                     newUserData[i].password = await bcrypt.hash(newUserData[i].password, 10);
                     newUserData[i].email = await newUserData[i].email.toLowerCase();
-                    newUserData[i].username = await newUserData[i].email;
                 }
                 return newUserData;
             },
             beforeCreate: async (UserData) => {
                 UserData.password = await bcrypt.hash(UserData.password, 10);
                 UserData.email = await UserData.email.toLowerCase();
-                UserData.username = await UserData.email;
                 return UserData;
             },
             beforeUpdate: async (updatedUserData) => {
                 updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
                 updatedUserData.email = await updatedUserData.email.toLowerCase();
-                updatedUserData.username = await updatedUserData.email;
                 return updatedUserData;
             }
         },
