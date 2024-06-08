@@ -4,7 +4,7 @@ const { User, Blog, Comment } = require("../models");
 const withAuth = require("../utils/auth.js");
 
 router.get("/", withAuth, (req, res) => {
-  Post.findAll({
+  Blog.findAll({
     where: { uid: req.session.user_id },
     attributes: [
       "id",
@@ -39,7 +39,7 @@ router.get("/", withAuth, (req, res) => {
 });
 
 router.get("/edit/:id", withAuth, (req, res) => {
-  Post.findOne({
+  Blog.findOne({
     where: { id: req.params.id },
     attributes: [
       "id",
@@ -84,7 +84,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
 });
 
 router.get("/create/", withAuth, (req, res) => {
-  Post.findAll({
+  Blog.findAll({
     where: { uid: req.session.user_id },
     attributes: [
       "id",
