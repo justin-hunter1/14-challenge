@@ -14,8 +14,8 @@ const seedAll = async () => {
     const { id: randomuid } = users[Math.floor(Math.random() * users.length)];
   
     const blogs = await Blog.create({
-      title: JSON.stringify(seedBlogs[i].title),
-      content: JSON.stringify(seedBlogs[i].content),
+      title: JSON.stringify(seedBlogs[i].title.toString()),
+      content: JSON.stringify(seedBlogs[i].content.toString()),
       uid: randomuid
     });
   };

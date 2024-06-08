@@ -1,12 +1,14 @@
 const router = require("express").Router();
-const { User, Blog } = require("../models");
+const { User, Blog, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
-        const userData = await User.findByPk( uid = req.session.user_id, {
+        const userData = await User.findByPk(req.session.user_id, {
             include: [{ model: Blog }]
         });
+
+        // const user = userData.map((user) => user.get({ plain: true }));
         const user = userData.get({ plain: true });
 
         res.render("profile", {
@@ -30,7 +32,6 @@ router.get("/login", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-
         const blogPost = await Blog.findOne({
             where: { id: req.params.id },
             attributes: [
@@ -42,6 +43,14 @@ router.get("/:id", async (req, res) => {
             include: [{
                 model: User,
                 attributes: ["email"]
+            }],
+            include: [{
+                model: Comment,
+                attributes: ["comment"],
+                include: {
+                    model: User,
+                    attributes: ["id"]
+                }
             }]
         });
 
@@ -67,11 +76,12 @@ router.get("/", async (req, res) => {
                 "title",
                 "created_at",
                 "content"
-              ],
-            include: [                {
-                model: User,
-                attributes: ["email"]
-              }
+            ],
+            include: [                
+                {
+                    model: User,
+                    attributes: ["email"]
+                }
             ]
         });
         const data = blogPost.map((blog) => blog.get({ plain: true }));

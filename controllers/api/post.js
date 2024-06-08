@@ -1,8 +1,25 @@
 const router = require("express").Router();
-const { User, Blog } = require("../../models");
+const { User, Blog, Comment } = require("../../models");
 const bcrypt = require("bcrypt");
 const withAuth = require("../../utils/auth");
 
+
+router.post("/comments", withAuth, async (req, res) => {
+    try {
+        const newComment = await Comment.create({
+            comment: req.body.comment, bid: req.body.id,
+            uid: req.session.user_id
+        });
+        res.status(200)
+           .json(newComment);
+console.log(newComment);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400)
+           .json(err);
+    }
+});
 
 router.post("/signin", async (req, res) => {
     try {
@@ -78,4 +95,3 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
-    

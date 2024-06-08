@@ -2,11 +2,11 @@
         <a href="/dashboard/create/"><button id="create-post" class="button">create post</button></a>
         
         <h2 class="title pb-4">dashboard: your posts</h2><hr>
-{{#if blog.length}}
+{{#if user}}
     </div>
 
     {{#each user as |user|}}
-        {{> blog-data user}}
+        {{> blog-data2 user}}
         
             <a href="/dashboard/edit/{{post.id}}"><button class="button">edit post</button></a>
         </div>
