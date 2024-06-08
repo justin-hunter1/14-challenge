@@ -12,7 +12,22 @@ router.post("/comments", withAuth, async (req, res) => {
         });
         res.status(200)
            .json(newComment);
-console.log(newComment);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400)
+           .json(err);
+    }
+});
+
+router.post("/blog", withAuth, async (req, res) => {
+    try {
+        const newComment = await Blog.create({
+            comment: req.body.comment, bid: req.body.id,
+            uid: req.session.user_id
+        });
+        res.status(200)
+           .json(newComment);
     }
     catch (err) {
         console.log(err);
