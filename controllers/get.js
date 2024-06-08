@@ -97,4 +97,30 @@ router.get("/", async (req, res) => {
     }
 });
 
+// router.get('/create/', withAuth, async (req, res) => {
+//     try {
+//         const blogPost = await Blog.findAll({
+//             attributes: [
+//                 "id",
+//                 "title",
+//                 "created_at",
+//                 "content"
+//             ],
+//             include: [                
+//                 {
+//                     model: User,
+//                     attributes: ["email"]
+//                 }
+//             ]
+//         });
+//         const data = blogPost.map(data => data.get({ plain: true }));
+//         res.render('create', { data, loggedIn: true });
+//     }
+//     catch(err) {
+//         res.status(500)
+//            .json(err);
+//         console.log(err);
+//     };
+// });
+
 module.exports = router;
