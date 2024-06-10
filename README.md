@@ -4,7 +4,7 @@
 Is a tech blog application using MVC structure 
 
 ## Link
-[Link](https://pindemonium.onrender.com/)
+[Link](https://one4-challenge.onrender.com)
 
 ## Visuals
 ![alt text](<public/images/homepage.png>)
